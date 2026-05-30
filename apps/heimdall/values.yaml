@@ -1,0 +1,33 @@
+replicaCount: 1
+
+image:
+  repository: lscr.io/linuxserver/heimdall
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+env:
+  puid: "1000"
+  pgid: "1000"
+  appUrl: "http://heimdall.local:8080"
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: heimdall.local
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  size: 1Gi
+
+resources: {}
+#  requests:
+#    cpu: 100m
+#    memory: 128Mi
+#  limits:
+#    cpu: 500m
+#    memory: 256Mi
