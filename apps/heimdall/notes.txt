@@ -1,0 +1,2 @@
+Basic docker command:
+sudo docker run --name=heimdall -d -v ./config:/config -e PGID=1000 -e PUID=1000 -p 8090:80 -p 8443:443 lscr.io/linuxserver/heimdall:latest
