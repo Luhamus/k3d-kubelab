@@ -26,6 +26,8 @@ spec:
           value: "1000"
         - name: PGID
           value: "1000"
+        - name: APP_URL
+          value: "http://heimdall.local:8080"
       #volumes:
       #- name: heimdall-config
       #  hostPath:
