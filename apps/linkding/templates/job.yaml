@@ -21,17 +21,16 @@ spec:
             - /bin/sh
             - -c
             - |
+              echo "Giving linkding time to start..."
+              sleep 20
               echo "Waiting for linkding to be ready..."
-              until wget -qO- "http://{{ include "linkding.name" . }}-service:{{ .Values.service.port }}/health" > /dev/null 2>&1; do
+              until python -c "import urllib.request, sys; urllib.request.urlopen('http://linkding-service:{{ .Values.service.port }}/health'); sys.exit(0)" 2>/dev/null; do
                 echo "Not ready, retrying in 3s..."
                 sleep 3
               done
-              echo "Linkding is up, waiting 5s for full init..."
-              sleep 5
-              echo "Importing bookmarks..."
-              python /etc/linkding/manage.py import_bookmarks \
-                /bookmarks/bookmarks.html \
-                --user {{ .Values.auth.adminUser | quote }}
+              echo "Linkding is ready, importing bookmarks..."
+              python /etc/linkding/manage.py import_netscape \
+                /bookmarks/bookmarks.html {{ .Values.auth.adminUser | quote }}
               echo "Done!"
           volumeMounts:
             - name: data
