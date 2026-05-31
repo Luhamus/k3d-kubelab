@@ -18,6 +18,7 @@ ingress:
   enabled: true
   className: nginx
   host: heimdall.local
+  defaultHomepage: true
 
 persistence:
   enabled: true
