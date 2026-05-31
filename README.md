@@ -2,10 +2,10 @@
 
 ## Prerequisites
 Following tools need to be installed and working:
-`docker `
-`kubectl `
-`helm ` 
-`k3d ` 
+- `docker`
+- `kubectl`
+- `helm` 
+- `k3d` 
 
 ### Networking
 For me, using `Fedora`, i was not able to access internet from my k8s cluster initally.

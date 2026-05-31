@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: sissbruecker/linkding
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+auth:
+  adminUser: admin
+  adminPassword: changeme
+
+service:
+  type: ClusterIP
+  port: 9090
+
+ingress:
+  enabled: true
+  className: nginx
+  host: linkding.local
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  size: 1Gi
+
+env:
+  superuserName: admin
+  superuserPassword: changeme
+
+resources: {}

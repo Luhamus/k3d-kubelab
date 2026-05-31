@@ -6,3 +6,4 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main
 
 ## Create namespaces
 kubectl create ns heimdall
+kubectl create ns linkding

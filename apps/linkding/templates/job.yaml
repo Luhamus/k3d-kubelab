@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "linkding.name" . }}-import
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "linkding.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": hook-succeeded,hook-failed
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: import
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "Waiting for linkding to be ready..."
+              until wget -qO- "http://{{ include "linkding.name" . }}-service:{{ .Values.service.port }}/health" > /dev/null 2>&1; do
+                echo "Not ready, retrying in 3s..."
+                sleep 3
+              done
+              echo "Linkding is up, waiting 5s for full init..."
+              sleep 5
+              echo "Importing bookmarks..."
+              python /etc/linkding/manage.py import_bookmarks \
+                /bookmarks/bookmarks.html \
+                --user {{ .Values.auth.adminUser | quote }}
+              echo "Done!"
+          volumeMounts:
+            - name: data
+              mountPath: /etc/linkding/data
+            - name: bookmarks
+              mountPath: /bookmarks
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "linkding.name" . }}-pvc
+        - name: bookmarks
+          configMap:
+            name: {{ include "linkding.name" . }}-bookmarks

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "linkding.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "linkding.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "linkding.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "linkding.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          env:
+            - name: LD_SUPERUSER_NAME
+              value: {{ .Values.env.superuserName | quote }}
+            - name: LD_SUPERUSER_PASSWORD
+              value: {{ .Values.env.superuserPassword | quote }}
+          volumeMounts:
+            - name: data
+              mountPath: /etc/linkding/data
+            - name: bookmarks
+              mountPath: /bookmarks
+          {{- with .Values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: data
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "linkding.name" . }}-pvc
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: bookmarks
+          configMap:
+            name: {{ include "linkding.name" . }}-bookmarks
