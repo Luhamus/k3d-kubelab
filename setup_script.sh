@@ -7,6 +7,9 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main
 ## Wait for ingress-nginx to be ready
 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 
+## Install ArgoCD
+./bootstrap/install-argocd.sh
+
 ## Deploy the Apps
-helm install heimdall apps/heimdall -n heimdall --debug --create-namespace
-helm install linkdingapps/linkding -n linkding --debug --create-namespace
+kubectl wait --namespace argocd --for=condition=ready pod --selector=app.kubernetes.io/name=argocd-server --timeout=180s
+kubectl apply -f clusters/dev/apps.yaml
