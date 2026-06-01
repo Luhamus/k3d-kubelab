@@ -1,0 +1,22 @@
+grafana:
+  adminUser: admin
+  adminPassword: changeme
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.local
+
+alertmanager:
+  enabled: false
+
+prometheus:
+  prometheusSpec:
+    ingress:
+      enabled: true
+    retention: 7d
+    resources:
+      requests:
+        memory: 400Mi
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false

@@ -7,7 +7,7 @@ Following tools need to be installed and working:
 - `helm` 
 - `k3d` 
 
-### Networking
+## Networking
 For me, using `Fedora`, i was not able to access internet from my k8s cluster initally.
 `Docker` was looking for the DNS server at the Host's ip (127.0.0.53), which doesn't exist inside the cluster
 The fix was adding DNS location explicitly in `/etc/docker/daemon.json`. 
@@ -17,16 +17,23 @@ The fix was adding DNS location explicitly in `/etc/docker/daemon.json`.
    ...
 ```
 
-I also added `hemidal.local` to my `/etc/hosts` file for the convenience of using "localhost" in the browser URL
+For now, I added the apps to my `/etc/hosts` file for to open them easilly with browser:
 ```
-127.0.0.1 localhost ... ... ... hemidall.local
+127.0.0.1 localhost ... ... ... hemidall.local linkding.local argocd.local grafana.local prometheus.local
 ```
 
-## Additional info
-Argocd HTTPS is diasbled and redirected to HTTP
+### Additional info
+- Argocd HTTPS is diasbled and redirected to HTTP
 
 
 ## Usage (WIP)
 - run the setup_script.sh
 - open `localhost:8080` on yout browser
-- ...
+- ... TODO ...
+
+### ArgoCD
+To get the initial generated password for ArgoCD (username is `admin`), run the following command:
+`k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo`
+
+
+### TODO
