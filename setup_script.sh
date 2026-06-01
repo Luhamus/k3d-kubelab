@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
 ## Create cluster
 k3d cluster create mycluster --agents 2 -p "8080:80@loadbalancer" --k3s-arg "--disable=traefik@server:*"
 
@@ -11,5 +14,4 @@ kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.
 ./bootstrap/install-argocd.sh
 
 ## Deploy the Apps
-kubectl wait --namespace argocd --for=condition=ready pod --selector=app.kubernetes.io/name=argocd-server --timeout=180s
 kubectl apply -f clusters/dev/apps.yaml

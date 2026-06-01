@@ -22,6 +22,10 @@ I also added `hemidal.local` to my `/etc/hosts` file for the convenience of usin
 127.0.0.1 localhost ... ... ... hemidall.local
 ```
 
+## Additional info
+Argocd HTTPS is diasbled and redirected to HTTP
+
+
 ## Usage (WIP)
 - run the setup_script.sh
 - open `localhost:8080` on yout browser
