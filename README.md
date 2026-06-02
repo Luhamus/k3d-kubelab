@@ -24,16 +24,21 @@ For now, I added the apps to my `/etc/hosts` file for to open them easilly with 
 
 ### Additional info
 - Argocd HTTPS is diasbled and redirected to HTTP
+<br/>
 
-
-## Usage (WIP)
+# Cluster install & usage (WIP)
 - run the setup_script.sh
 - open `localhost:8080` on yout browser
 - ... TODO ...
 
 ### ArgoCD
 To get the initial generated password for ArgoCD (username is `admin`), run the following command:
-`k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo`
+```
+k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo
+```
+
+
+### Grafana and Prometheus
 
 
 ### TODO
