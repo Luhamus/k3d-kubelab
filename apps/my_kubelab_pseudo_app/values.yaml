@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: ghcr.io/luhamus/kubelab-app
-  tag: "latest"
+  tag: "5298342"
   pullPolicy: IfNotPresent
 
 env:
