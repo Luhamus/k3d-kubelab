@@ -12,7 +12,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{/* Stable subset only — selector labels cannot change after first deploy. */}}
 
-{{- define "kubelab_app.selectorLabels" -}}
+{{- define "kubelab-app.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "kubelab-app.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
