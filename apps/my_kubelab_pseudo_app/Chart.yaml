@@ -1,0 +1,5 @@
+apiVersion: v2
+name: kubelab-app
+description: My kubelab pseudo app
+type: application
+version: 0.1.0
