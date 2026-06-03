@@ -19,15 +19,4 @@ spec:
                 name: {{ include "kubelab-app.name" . }}-service
                 port:
                   number: {{ .Values.service.port }}
-    {{- if .Values.ingress.defaultHomepage }}
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ include "kubelab-app.name" . }}-service
-                port:
-                  number: {{ .Values.service.port }}
-    {{- end }}
 {{- end }}
