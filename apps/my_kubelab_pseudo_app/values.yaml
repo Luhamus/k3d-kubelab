@@ -17,6 +17,9 @@ ingress:
   className: nginx
   host: kubelab-app.local
 
+monitoring:
+  enabled: true
+
 resources: {}
 #  requests:
 #    cpu: 100m
