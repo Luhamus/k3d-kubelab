@@ -17,3 +17,6 @@ kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.
 
 ## Deploy the Apps
 kubectl apply -f clusters/dev/apps.yaml
+
+## Add Grafana Dashboard
+kubectl apply -f bootstrap/grafana_dashboards/dashboard-configmap.yaml

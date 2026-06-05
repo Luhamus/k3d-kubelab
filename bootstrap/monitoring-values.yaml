@@ -6,6 +6,10 @@ grafana:
     ingressClassName: nginx
     hosts:
       - grafana.local
+    sidecar:
+      dashboards:
+        enabled: true
+        label: grafana_dashboard # watches ConfigMap with this label
 
 alertmanager:
   enabled: false
