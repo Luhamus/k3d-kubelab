@@ -64,6 +64,7 @@ k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password
 
 ### Additional info
 - Argocd HTTPS is diasbled and redirected to HTTP
+- Kubelab-app has 3 endpoints: `/health`, `/metrics`  and `/quote`
 
 ## Screenshots
 `TODO`
