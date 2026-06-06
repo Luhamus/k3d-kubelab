@@ -24,7 +24,7 @@ git clone https://github.com/Luhamus/k3d-kubelab.git
 cd k3d-kubelab
 bash setup_script.sh
 ```
-update /etc/hosts accordingly ( see [Networking](##Networking) )
+update /etc/hosts accordingly ( see [Networking](#networking) )
 
 ---
 
