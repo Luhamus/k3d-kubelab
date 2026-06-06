@@ -18,7 +18,7 @@ Following tools need to be installed and working:
 - `helm` 
 - `k3d` 
 
-## Quick Start
+## Getting up and running
 ```bash
 git clone https://github.com/Luhamus/k3d-kubelab.git
 cd k3d-kubelab
