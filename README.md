@@ -72,13 +72,13 @@ k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password
     <img src="screenshots/heimdall_screenshot.png" width="45%" />
   </a>
   &nbsp;
-  <a href="screenshots/argocd_screenshot.png.png">
+  <a href="screenshots/argocd_screenshot.png">
     <img src="screenshots/argocd_screenshot.png" width="45%" />
   </a>
 </p>
 
 <p align="center">
-  <a href="images/grafana_screenshot.png">
+  <a href="screenshots/grafana_screenshot.png">
     <img src="screenshots/grafana_screenshot.png" width="45%" />
   </a>
   &nbsp;
