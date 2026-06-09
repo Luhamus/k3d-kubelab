@@ -67,4 +67,23 @@ k get -n argocd secrets argocd-initial-admin-secret -o jsonpath='{.data.password
 - Kubelab-app has 3 endpoints: `/health`, `/metrics`  and `/quote`
 
 ## Screenshots
-`TODO`
+<p align="center">
+  <a href="screenshots/heimdall_screenshot.png">
+    <img src="screenshots/heimdall_screenshot.png" width="45%" />
+  </a>
+  &nbsp;
+  <a href="screenshots/argocd_screenshot.png.png">
+    <img src="screenshots/argocd_screenshot.png" width="45%" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="images/grafana_screenshot.png">
+    <img src="screenshots/grafana_screenshot.png" width="45%" />
+  </a>
+  &nbsp;
+  <a href="screenshots/kubelab_app_screenshot.png">
+    <img src="screenshots/kubelab_app_screenshot.png" width="45%" />
+  </a>
+</p>
+
